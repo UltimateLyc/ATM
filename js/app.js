@@ -1,26 +1,10 @@
 //Local storage 
 //session storage
 
-/*
-
-Crea una aplicación web con JavaScript donde simulemos la interacción con un cajero automático.
-
-Al seleccionar una cuenta, debes ingresar el password asociado a la cuenta. Si el password es incorrecto, debes notificar al usuario y permitirle intentarlo nuevamente. Si el password es correcto, debes mostrar las siguientes opciones:
-
-    Consultar saldo
-    Ingresar monto
-    Retirar monto
-
-    Al seleccionar consultar saldo, debe mostrar en pantalla el saldo actual de la cuenta
-    Al seleccionar ingresar monto, el usuario debe escribir el monto a ingresar. Al ingresar el monto, debe mostrarle al usuario el monto ingresado y el nuevo saldo total.
-    Al seleccionar retirar monto, el usuario debe escribir el monto a retirar. Al retirar el monto, debe mostrarle al usuario el monto retirado y el nuevo saldo total.
-
-
- */
-
-//Variables globales
+/* *************************  Global Variables  ************************* */ 
 
 let usuario;
+let control;
 
 let cuentas = 
 [ 
@@ -46,7 +30,7 @@ let cuentas =
     }, 
 ];
 
-//Funciones
+/* ************************* Functions  ************************* */ 
 
 function loginAccess()
 {
@@ -56,9 +40,7 @@ let userName;
 let userPassword;
 
 userName = document.querySelector('#user').value;
-//console.log("🚀 ~ file: app.js ~ line 56 ~ validateUser", userName);
 userPassword = document.querySelector('#password').value;
-//console.log("🚀 ~ file: app.js ~ line 59 ~ validatePassword", userPassword);
 
 usuario = cuentas.find(function buscar(user)
 {
@@ -86,45 +68,124 @@ else
 }
 }
 
-let control;
+function invisible(variable)
+{
+    control = document.getElementById(variable)
+    control.classList.remove('visible');
+    control.classList.add('invisible');
+}
+
+function visible(variable)
+{
+    control = document.getElementById(variable);
+    control.classList.remove('invisible');
+    control.classList.add('visible');
+}
+
 
 function menu()
 {
-    control = document.getElementById('access_credentials');
-    control.classList.remove('visible');
-    control.classList.add('invisible');
-
-    control = document.getElementById('nav_menu');
-    control.classList.remove('invisible');
-    control.classList.add('visible');
-
-    control = document.getElementById('exit_container');
-    control.classList.remove('invisible');
-    control.classList.add('visible');
+    //Volvevemos invisible el login
+    invisible('access_credentials');
+    
+    //Volvemos visible el menu de botones
+    visible('nav_menu');
 
 }
 
 function checkBalance()
 {
-    console.log(usuario.saldo)
+    //Control de visibilidad
+    invisible('btn_deposit_container');
+    invisible('btn_withdraw_container');
+    invisible('btn_check_balance');
+    visible('return_menu_container');
+    
+    visible('view_balance');
+    let view_balance = document.getElementById('view_balance').innerHTML = `Su saldo actual en la cuenta es de: <b>$${usuario.saldo}</b>`;
+
 }
 
 function deposit()
 {
-    console.log(usuario.saldo)
-    let test = Number(prompt('Ingrese la cantidad a ingresar'))
-    usuario.saldo += test
-    console.log(usuario.saldo)
+    invisible('btn_check_balance_container');
+    invisible('btn_deposit');
+    invisible('btn_withdraw_container');
+    visible('deposit_number');
+
+    visible('return_menu_container');
+
+}
+
+function confirmDeposit()
+{
+    let deposito = Number(document.getElementById('deposit').value);
+    usuario.saldo += deposito;
+    invisible('deposit_number');
+    visible('viewDeposit')
+    let viewDeposit = document.getElementById('viewDeposit').innerHTML = `El nuevo saldo en la cuenta es: <b>$${usuario.saldo}</b>`
+
 }
 
 
 function withdraw()
 {
-    console.log(usuario.saldo)
-    let test_2 = Number(prompt('Ingrese la cantidad a retirar'))
-    usuario.saldo -= test_2
-    console.log(usuario.saldo)
+
+    invisible('btn_check_balance_container');
+    invisible('btn_deposit_container');
+
+    invisible('btn_withdraw');
+    visible('withdraw_number');
+
+    visible('return_menu_container');
+
+    let viewActualBalance = document.getElementById('viewActualBalance').innerHTML = `Su saldo actual en la cuenta es de: <b>$${usuario.saldo}</b>`;
+
+    viewActualBalance(usuario.saldo);
+
 }
 
+function confirmWithdraw()
+{
+    invisible('withdraw_number');
+    let amount = Number(document.getElementById('withdraw').value);
 
+    if(usuario.saldo < amount)
+    {
+        alert('La cantidad ingresa no esta disponible');
+        withdraw();
+    }
+    else
+    {
+        usuario.saldo -= amount;
+        console.log("🚀 ~ file: app.js ~ line 166 ~ usuario.saldo", usuario.saldo)
+        
+        visible('viewWithdraw')
+        let viewWithdraw = document.getElementById('viewWithdraw').innerHTML  = `Su saldo actual en la cuenta es de: <b>$${usuario.saldo}</b>`;
+    }
+}
 
+function returnMenu()
+{
+
+    //Check Balance
+    visible('btn_check_balance_container')
+    visible('btn_check_balance');
+    invisible('view_balance');
+
+    //Deposit
+    visible('btn_deposit_container');
+    visible('btn_deposit');
+    invisible('deposit_number');
+    invisible('viewDeposit');
+
+    //withdraw
+    visible('btn_withdraw_container');
+    visible('btn_withdraw');
+    invisible('viewWithdraw');
+
+    //button return
+    invisible('return_menu_container');
+
+    
+}

@@ -37,20 +37,52 @@
 
     <nav id="nav_menu"  class="invisible">
         <div>
-            <div>
-                <button id="btn_check_balance" onclick="checkBalance()">Consultar Saldo</button>
+
+            <div id="btn_check_balance_container" class="visible">
+                <button  id="btn_check_balance" class="visible" onclick="checkBalance()">Consultar Saldo</button>
+                <p id="view_balance" class="invisible"></p>
             </div>
 
             <br>
 
-            <div>
-                <button id="btn_deposit" onclick="deposit()">Depositar</button>
+            <div id="btn_deposit_container" class="visible">
+                
+                <button id="btn_deposit" onclick="deposit()">Desea Depositar</button>
+
+                <div id="deposit_number" class="invisible">
+                    
+                    <label for="deposit">Cantidad a depositar: $</label>
+                    <input type="number" id="deposit">
+                    <br>
+
+                    <button onclick="confirmDeposit()">Depositar a Cuenta</button>
+                </div>
+
+                <p id ="viewDeposit" class="invisible"></p>
+
             </div>
 
             <br>
 
-            <div>
-                <button id="btn_withdraw" onclick="withdraw()">Retirar</button>
+            <div id="btn_withdraw_container" class="visible">
+                
+                <button  id="btn_withdraw" class="visible" onclick="withdraw()">Desea Retirar</button>
+
+                <div id="withdraw_number" class="invisible">
+                    
+                    <p id="viewActualBalance" class="visible"></p>
+                    <br>
+
+                    <label for="withdraw">Cantidad a retirar: $</label>
+                    <input type="number" id="withdraw">
+                    <br>
+
+                    <button onclick="confirmWithdraw()">Retirar</button>
+
+                </div>
+
+                <p class="invisible" id="viewWithdraw"></p>
+
             </div>
 
         
@@ -60,8 +92,8 @@
     <footer>
 
         <br>
-        <div id="exit_container" class="invisible">
-            <button id="exit" onclick="exit()">Salir</button>
+        <div id="return_menu_container" class="invisible">
+            <button id="btn_return_menu" onclick = "returnMenu()">Regresar</button>
         </div>
     </footer>
     
