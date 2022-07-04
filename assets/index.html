@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>ATM V2.0</title>
+    <script defer src="app.js"></script>
+</head>
+
+<body>
+
+    <header id="tittle_container">
+        <h1>ATM</h1>
+    </header>
+
+    <main>
+        <div id="account_container" class="visible">
+
+            <div id="user_container">
+                <label for="user">User:</label>
+                <input type="text" id="user">
+            </div>
+
+            <div id="password_container">
+                <label for="password">Password:</label>
+                <input type="text" id="password">
+            </div>
+
+            <div id="login_container">
+                <button onclick="login()" >Login</button>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+
+</html>

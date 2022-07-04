@@ -1,0 +1,59 @@
+body
+{
+    width: 0 auto;
+    height: 100vh;
+    border: 1px solid red;
+}
+
+.visible
+{
+    display: block;
+}
+
+.invisible
+{
+    display: none;
+}
+
+#tittle_container
+{
+    text-align: center;
+}
+
+body
+{
+    display: flex;
+    flex-direction: column;
+}
+
+main
+{
+    border: 3px solid green;
+    display: flex;
+    justify-content: center;
+    
+}
+
+#account_container
+{
+    display: flex;
+    border: 1px solid blue;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#login_container
+{
+    align-self: center;
+}
+
+#tittle_container
+{
+    border: 3px solid green;
+}
+
+#user_container, #password_container, #login_container
+{
+    border: 1px solid green;
+}
+

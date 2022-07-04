@@ -1,5 +1,9 @@
 //Local storage 
 //session storage
+//function arrows
+//let value = document.getElementById("tuIdDelInput").value
+//value = 0
+
 
 /* *************************  Global Variables  ************************* */ 
 
@@ -11,7 +15,7 @@ let cuentas =
     {
         id: 0, 
         nombre: "mali", 
-        password: 'helloworld', 
+        password: ' ', 
         saldo: 200, 
     }, 
 
@@ -90,6 +94,8 @@ function menu()
     
     //Volvemos visible el menu de botones
     visible('nav_menu');
+
+    visible('exit_menu_container');
 
 }
 
@@ -183,9 +189,16 @@ function returnMenu()
     visible('btn_withdraw_container');
     visible('btn_withdraw');
     invisible('viewWithdraw');
+    invisible('withdraw_number')
 
     //button return
     invisible('return_menu_container');
-
     
+}
+
+function exitMenu()
+{
+    visible('access_credentials');
+    invisible('nav_menu');
+    invisible('exit_menu_container');
 }
